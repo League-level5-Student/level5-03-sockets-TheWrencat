@@ -65,11 +65,7 @@ public class ChatServer extends Thread {
 			} catch (IOException e) {
 				var = false;
 			}
-			// 6. If the program catches a SockeTimeoutException, let the user know about it
-			// and set loop's boolean variable to false.
-
-			// 7. If the program catches a IOException, let the user know about it and set
-			// the loop's boolean variable to false.
+			
 		}
 
 	}
