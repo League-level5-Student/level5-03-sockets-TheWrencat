@@ -23,7 +23,7 @@ public class ClientGreeter {
 			DataOutputStream dataOutput = new DataOutputStream(connection.getOutputStream());
 			// 6. Use the DataOutputStream object to send a message to the server using the
 			// writeUTF(String message) method
-			dataOutput.writeUTF("Hey Server");
+			dataOutput.writeUTF("The client says Hello!");
 			// 7. Create a DataInputStream object. When initializing it, use the Server
 			// object you created in step 4 to call the getInputStream() method.
 			DataInputStream dataInput = new DataInputStream(connection.getInputStream());
@@ -32,7 +32,7 @@ public class ClientGreeter {
 			dataInput.readUTF();
 			// 9. Close the client's server object
 			connection.close();
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
