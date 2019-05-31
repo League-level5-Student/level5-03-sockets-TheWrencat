@@ -1,4 +1,4 @@
-package _01_Intro_To_Sockets.server;
+package _02_Chat_Application;
 
 import java.net.*;
 
@@ -6,12 +6,12 @@ import javax.swing.JOptionPane;
 
 import java.io.*;
 
-public class ServerGreeter extends Thread {
+public class ChatServer extends Thread {
 	// 1. Create an object of the ServerSocket class
 	ServerSocket server;
 	int port = 8001;
 
-	public ServerGreeter() throws IOException {
+	public ChatServer() throws IOException {
 		// 2. Initialize the ServerSocket object. In the parameters,
 		// you must define the port at which the server will listen for connections.
 		server = new ServerSocket(port, 100);
@@ -56,7 +56,8 @@ public class ServerGreeter extends Thread {
 				DataOutputStream dataOutput = new DataOutputStream(sock.getOutputStream());
 				// 14. Use the DataOutputStream object to send a message to the client using the
 				// writeUTF(String message) method.
-				dataOutput.writeUTF("The server says Hello!");
+				String output = JOptionPane.showInputDialog("What would you like to send?");
+				dataOutput.writeUTF(output);
 				// 15. Close the client server
 				server.close();
 			} catch (SocketTimeoutException e) {
@@ -77,7 +78,7 @@ public class ServerGreeter extends Thread {
 		// 16. In a new thread, create an object of the ServerGreeter class and start
 		// the thread. Don't forget the try-catch.
 		try {
-			ServerGreeter hello = new ServerGreeter();
+			ChatServer hello = new ChatServer();
 			hello.run();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

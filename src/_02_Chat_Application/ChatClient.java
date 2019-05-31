@@ -1,4 +1,4 @@
-package _01_Intro_To_Sockets.client;
+package _02_Chat_Application;
 
 import java.net.*;
 
@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 import java.io.*;
 
-public class ClientGreeter {
+public class ChatClient {
 
 	public static void main(String[] args) {
 		// 1. Create a String for the ip address of the server.
@@ -21,12 +21,14 @@ public class ClientGreeter {
 			// in the ip address and the port number
 
 			Socket connection = new Socket(ip, port);
+			JOptionPane.showMessageDialog(null, "Connected to Server.");
 			// 5. Create a DataOutputStream object. When initializing it, use the Socket
 			// object you created in step 4 to call the getOutputStream() method.
 			DataOutputStream dataOutput = new DataOutputStream(connection.getOutputStream());
 			// 6. Use the DataOutputStream object to send a message to the server using the
 			// writeUTF(String message) method
-			dataOutput.writeUTF("The client says Hello!");
+			String output = JOptionPane.showInputDialog("What would you like to say?");
+			dataOutput.writeUTF(output);
 			// 7. Create a DataInputStream object. When initializing it, use the Server
 			// object you created in step 4 to call the getInputStream() method.
 			DataInputStream dataInput = new DataInputStream(connection.getInputStream());
